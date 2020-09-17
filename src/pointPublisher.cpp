@@ -1,6 +1,8 @@
 #include "ros/ros.h"
 
 #include "geometry_msgs/Point.h"
+#include "integrationTest/triangle_point.h"
+
 #include <string>
 
 #include <iostream>
@@ -10,22 +12,20 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "point_publisher");
     ros::NodeHandle n("~");
 
-    ros::Publisher threePointPublisher = n.advertise<geometry_msgs::Point>("three_point", 1000);
-    //ros::Rate loop_rate(10);
+    //three_point topic publisher
+    ros::Publisher threePointPublisher = n.advertise<integrationTest::triangle_point>("three_point", 1000);
 
     while(ros::ok())
     {
-        
-
         //ROS_INFO("%s", msg.data.c_str());
-        std::cout << "give 3 3D point :" << std::endl;
+        std::cout << "give three 3D point : [ 0.0 , 0.0, 0.0 ] , [ 1.0, 1.0, 1.0 ] , [ 2.0, 2.0, 2.0 ]" << std::endl;
 
-        std::string param;
-        std::cin >> param;
+        std::string input;
+        std::cin >> input;
 
-        geometry_msgs::Point point;
+        integrationTest::triangle_point points;
 
-        threePointPublisher.publish(point);
+        threePointPublisher.publish(points);
     }
 
     return 0;

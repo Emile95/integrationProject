@@ -1,31 +1,31 @@
 #include "ros/ros.h"
+
 #include "geometry_msgs/Point.h"
 #include <string>
 
-#include <sstream>
 #include <iostream>
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "point_publisher");
-    ros::NodeHandle n;
+    ros::NodeHandle n("~");
 
-    ros::Publisher treePointPublisher = n.advertise<geometry_msgs::Point>("three_point", 1000);
-    ros::Rate loop_rate(10);
+    ros::Publisher threePointPublisher = n.advertise<geometry_msgs::Point>("three_point", 1000);
+    //ros::Rate loop_rate(10);
 
-    int count = 0;
     while(ros::ok())
     {
-        geometry_msgs::Point point;
+        
 
         //ROS_INFO("%s", msg.data.c_str());
+        std::cout << "give 3 3D point :" << std::endl;
 
-        treePointPublisher.publish(point);
-        ros::spinOnce();
+        std::string param;
+        std::cin >> param;
 
-        loop_rate.sleep();
+        geometry_msgs::Point point;
 
-        ++count;
+        threePointPublisher.publish(point);
     }
 
     return 0;

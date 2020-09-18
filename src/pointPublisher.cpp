@@ -2,6 +2,7 @@
 
 #include "geometry_msgs/Point.h"
 #include "integrationTest/triangle_point.h"
+#include "integrationTest/triangle_area_resolver.h"
 
 int main(int argc, char **argv)
 {
@@ -39,6 +40,22 @@ int main(int argc, char **argv)
         msg.c = p3;
 
         threePointPublisher.publish(msg);
+
+        ros::ServiceClient client = n.serviceClient<integrationTest::triangle_area_resolver>("triangle_area_resolver");
+        integrationTest::triangle_area_resolver srv;
+        srv.request.a = p1;
+        srv.request.b = p2;
+        srv.request.c = p3;
+        
+        if (client.call(srv))
+        {
+            //ROS_INFO("Sum: %ld", "asdasd";
+            std::cout << srv.response.area << std::endl;;
+        }
+        else
+        {
+            //ROS_ERROR("Failed to call service add_two_ints");
+        }
     }
 
     return 0;

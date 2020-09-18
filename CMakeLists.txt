@@ -13,6 +13,11 @@ add_message_files(
   triangle_point.msg
 )
 
+add_service_files(
+   FILES
+   triangle_area_resolver.srv
+)
+
 generate_messages(
   DEPENDENCIES
   geometry_msgs
@@ -30,4 +35,8 @@ include_directories(
 
 add_executable(pointPublisher src/pointPublisher.cpp)
 target_link_libraries(pointPublisher ${catkin_LIBRARIES})
-#add_dependencies(pointPublisher integrationTest_generate_messages_cpp)
+add_dependencies(pointPublisher integrationTest_generate_messages_cpp)
+
+add_executable(triangleAreaResolver src/triangleAreaResolver.cpp)
+target_link_libraries(triangleAreaResolver ${catkin_LIBRARIES})
+add_dependencies(triangleAreaResolver integrationTest_generate_messages_cpp)

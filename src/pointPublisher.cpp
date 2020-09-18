@@ -2,6 +2,8 @@
 
 #include "geometry_msgs/Point.h"
 #include "integrationTest/triangle_point.h"
+#include "integrationTest/triangle_area.h"
+
 #include "integrationTest/triangle_area_resolver.h"
 
 int main(int argc, char **argv)
@@ -10,6 +12,8 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     ros::Publisher threePointPublisher = n.advertise<integrationTest::triangle_point>("three_point", 1000);
+    ros::Publisher triangleAreaPublisher = n.advertise<integrationTest::triangle_area>("triangle_area", 1000);
+    ros::ServiceClient client = n.serviceClient<integrationTest::triangle_area_resolver>("triangle_area_resolver");
 
     while(ros::ok())
     {
@@ -41,7 +45,6 @@ int main(int argc, char **argv)
 
         threePointPublisher.publish(msg);
 
-        ros::ServiceClient client = n.serviceClient<integrationTest::triangle_area_resolver>("triangle_area_resolver");
         integrationTest::triangle_area_resolver srv;
         srv.request.a = p1;
         srv.request.b = p2;
@@ -49,12 +52,9 @@ int main(int argc, char **argv)
         
         if (client.call(srv))
         {
-            //ROS_INFO("Sum: %ld", "asdasd";
-            std::cout << srv.response.area << std::endl;;
-        }
-        else
-        {
-            //ROS_ERROR("Failed to call service add_two_ints");
+            integrationTest::triangle_area triangleAreaMsg;
+            triangleAreaMsg.area = srv.response.area;
+            triangleAreaPublisher.publish(triangleAreaMsg);
         }
     }
 

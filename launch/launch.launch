@@ -1,0 +1,6 @@
+<launch>
+
+    <node pkg="integrationTest" name="pointPublisher" type="pointPublisher" output="screen" />
+    <node pkg="integrationTest" name="triangleAreaResolver" type="triangleAreaResolver"/>
+    
+</launch>

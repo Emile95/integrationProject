@@ -10,15 +10,11 @@ bool resolveArea(
     integrationTest::triangle_area_resolver::Response &res
 )
 {
-
     res.area = 0.5 * sqrt(
         pow((req.b.x * req.a.y) - (req.c.x * req.a.y) - (req.a.x * req.b.y) + (req.c.x * req.b.y) + (req.a.x * req.c.y) - (req.b.x * req.c.y), 2) +
         pow((req.b.x * req.a.z) - (req.c.x * req.a.z) - (req.a.x * req.b.z) + (req.c.x * req.b.z) + (req.a.x * req.c.z) - (req.b.x * req.c.z), 2) +
         pow((req.b.y * req.a.z) - (req.c.y * req.a.z) - (req.a.y * req.b.z) + (req.c.y * req.b.z) + (req.a.y * req.c.z) - (req.b.y * req.c.z), 2)
     );
-
-
-    //res.area = absolute(a * b) / 2;
 
     return true;
 }

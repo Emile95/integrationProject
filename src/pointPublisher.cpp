@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
         geometry_msgs::Point p3;
         p3.x = 5.78;
-        p3.y = 3.23;
+        p3.y = 3.89;
         p3.z = 7.67;
         msg.c = p3;
 

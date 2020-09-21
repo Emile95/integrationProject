@@ -1,6 +1,6 @@
 <launch>
 
-    <node pkg="integrationTest" name="pointPublisher" type="pointPublisher" output="screen" />
-    <node pkg="integrationTest" name="triangleAreaResolver" type="triangleAreaResolver"/>
+    <node pkg="integrationTest" name="triangle_3d_points_teleop" type="triangle_3d_points_teleop" output="screen" />
+    <node pkg="integrationTest" name="triangle_area_resolver" type="triangle_area_resolver"/>
     
 </launch>

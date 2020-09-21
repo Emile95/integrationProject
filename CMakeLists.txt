@@ -34,10 +34,10 @@ include_directories(
 )
 
 
-add_executable(pointPublisher src/pointPublisher.cpp)
-target_link_libraries(pointPublisher ${catkin_LIBRARIES})
-add_dependencies(pointPublisher integrationTest_generate_messages_cpp)
+add_executable(triangle_3d_points_teleop src/triangle3DPointTeleop.cpp)
+target_link_libraries(triangle_3d_points_teleop ${catkin_LIBRARIES})
+add_dependencies(triangle_3d_points_teleop integrationTest_generate_messages_cpp)
 
-add_executable(triangleAreaResolver src/triangleAreaResolver.cpp)
-target_link_libraries(triangleAreaResolver ${catkin_LIBRARIES})
-add_dependencies(triangleAreaResolver integrationTest_generate_messages_cpp)
+add_executable(triangle_area_resolver src/triangleAreaResolver.cpp)
+target_link_libraries(triangle_area_resolver ${catkin_LIBRARIES})
+add_dependencies(triangle_area_resolver integrationTest_generate_messages_cpp)

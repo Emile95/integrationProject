@@ -4,7 +4,7 @@ ROS Package
 
 rosrun integrationTest triangle_area_resolver
 
-- Provide service for resovling triangle area with three 3D point.
+- Provide triangle_area_resolver service for resovling triangle area with three 3D point.
 
 [node] triangle_3d_points_teleop
 
@@ -12,5 +12,15 @@ rosrun integrationTest triangle_3d_points_teleop
 
 - Console app who receive input from user, input are number who represente coordinate
 - Inputs represent triangle 3d points
-- Use triangle_area_resolver to get triangle area with the given points.
-- publishing triangle_area.msg on /triangle_area topic
+- client of triangle_area_resolver service.
+- publisher triangle_3d_points.msg on /triangle_3d_points topic
+
+- publisher triangle_area.msg on /triangle_area topic
+
+
+[launch] launch.launch
+
+roslaunch integrationTest launch.launch
+
+- run triangle_area_resolver node.
+- run triangle_3d_points_teleop node and bind the output with console.

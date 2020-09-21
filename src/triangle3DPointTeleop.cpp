@@ -6,14 +6,16 @@
 
 #include "integrationTest/triangle_area_resolver.h"
 
-double consoleAskDimensionValue(const std::string& coutStr)
+bool consoleAskDimensionValue(const std::string& coutStr, double& number)
 {
     std::cout << coutStr << std::endl;
 
     std::string input;
     std::cin >> input;
 
-    return atof(input.c_str());
+    number = atof(input.c_str());
+
+    return ros::ok();
 }
 
 int main(int argc, char **argv)
@@ -33,26 +35,26 @@ int main(int argc, char **argv)
     {
         //Triangle 3d point message to publish
         integrationTest::triangle_point trianglePointMsg;
-        
+
         //3d point A
         geometry_msgs::Point a;
-        a.x = consoleAskDimensionValue("Point A, dimension x = ");
-        a.y = consoleAskDimensionValue("Point A, dimension y = ");
-        a.z = consoleAskDimensionValue("Point A, dimension z = ");
+        if(!consoleAskDimensionValue("Point A, dimension x = ", a.x)) break;
+        if(!consoleAskDimensionValue("Point A, dimension y = ", a.y)) break;
+        if(!consoleAskDimensionValue("Point A, dimension z = ", a.z)) break;
         trianglePointMsg.a = a;
 
         //3d point B
         geometry_msgs::Point b;
-        b.x = consoleAskDimensionValue("Point B, dimension x = ");
-        b.y = consoleAskDimensionValue("Point B, dimension y = ");
-        b.z = consoleAskDimensionValue("Point B, dimension z = ");
+        if(!consoleAskDimensionValue("Point B, dimension x = ", b.x)) break;
+        if(!consoleAskDimensionValue("Point B, dimension y = ", b.y)) break;
+        if(!consoleAskDimensionValue("Point B, dimension z = ", b.z)) break;
         trianglePointMsg.b = b;
 
         //3d point C
         geometry_msgs::Point c;
-        c.x = consoleAskDimensionValue("Point C, dimension x = ");
-        c.y = consoleAskDimensionValue("Point C, dimension y = ");
-        c.z = consoleAskDimensionValue("Point C, dimension z = ");
+        if(!consoleAskDimensionValue("Point C, dimension x = ", c.x)) break;
+        if(!consoleAskDimensionValue("Point C, dimension y = ", c.y)) break;
+        if(!consoleAskDimensionValue("Point C, dimension z = ", c.z)) break;
         trianglePointMsg.c = c;
 
         threePointPublisher.publish(trianglePointMsg);

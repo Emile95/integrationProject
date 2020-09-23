@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(integrationTest)
+project(integration_project)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -36,8 +36,8 @@ include_directories(
 
 add_executable(triangle_3d_points_teleop src/triangle3DPointTeleop.cpp)
 target_link_libraries(triangle_3d_points_teleop ${catkin_LIBRARIES})
-add_dependencies(triangle_3d_points_teleop integrationTest_generate_messages_cpp)
+add_dependencies(triangle_3d_points_teleop integration_project_generate_messages_cpp)
 
 add_executable(triangle_area_resolver src/triangleAreaResolver.cpp)
 target_link_libraries(triangle_area_resolver ${catkin_LIBRARIES})
-add_dependencies(triangle_area_resolver integrationTest_generate_messages_cpp)
+add_dependencies(triangle_area_resolver integration_project_generate_messages_cpp)

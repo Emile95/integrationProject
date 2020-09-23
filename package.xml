@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>integrationTest</name>
+  <name>integration_project</name>
   <version>0.0.0</version>
   <description>Integration Project for Capra Club</description>
 

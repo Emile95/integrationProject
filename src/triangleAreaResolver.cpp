@@ -3,11 +3,11 @@
 #include <cmath>
 
 #include "geometry_msgs/Point.h"
-#include "integrationTest/triangle_area_resolver.h"
+#include "integration_project/triangle_area_resolver.h"
 
 bool resolveArea(
-    integrationTest::triangle_area_resolver::Request  &req,
-    integrationTest::triangle_area_resolver::Response &res
+    integration_project::triangle_area_resolver::Request  &req,
+    integration_project::triangle_area_resolver::Response &res
 )
 {
     res.area = 0.5 * sqrt(

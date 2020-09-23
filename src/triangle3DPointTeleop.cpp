@@ -1,10 +1,10 @@
 #include "ros/ros.h"
 
 #include "geometry_msgs/Point.h"
-#include "integrationTest/triangle_point.h"
-#include "integrationTest/triangle_area.h"
+#include "integration_project/triangle_point.h"
+#include "integration_project/triangle_area.h"
 
-#include "integrationTest/triangle_area_resolver.h"
+#include "integration_project/triangle_area_resolver.h"
 
 bool consoleAskDimensionValue(const std::string& coutStr, double& number)
 {
@@ -32,17 +32,17 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     // triangle_3d_points Publisher
-    ros::Publisher threePointPublisher = n.advertise<integrationTest::triangle_point>("triangle_3d_points", 1000);
+    ros::Publisher threePointPublisher = n.advertise<integration_project::triangle_point>("triangle_3d_points", 1000);
     // triangle_area Publisher
-    ros::Publisher triangleAreaPublisher = n.advertise<integrationTest::triangle_area>("triangle_area", 1000);
+    ros::Publisher triangleAreaPublisher = n.advertise<integration_project::triangle_area>("triangle_area", 1000);
 
     // triangle_area_resolver Service client
-    ros::ServiceClient triangleAreaResolverclient = n.serviceClient<integrationTest::triangle_area_resolver>("triangle_area_resolver");
+    ros::ServiceClient triangleAreaResolverclient = n.serviceClient<integration_project::triangle_area_resolver>("triangle_area_resolver");
 
     while(ros::ok())
     {
         //Triangle 3d point message to publish
-        integrationTest::triangle_point trianglePointMsg;
+        integration_project::triangle_point trianglePointMsg;
 
         //Ask for 3 3D points
         //Handle ctrl+c between dimension of each points
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
         std::cout << "publish triangle 3d points on /triangle_3d_points topic" << std::endl;
         
         //Create triangle_area_resolver srv with triangle_3d_points msg
-        integrationTest::triangle_area_resolver srv;
+        integration_project::triangle_area_resolver srv;
         srv.request.a = trianglePointMsg.a;
         srv.request.b = trianglePointMsg.b;
         srv.request.c = trianglePointMsg.c;
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
         if (triangleAreaResolverclient.call(srv))
         {
             std::cout << "publish triangle area on /triangle_area topic" << std::endl;
-            integrationTest::triangle_area triangleAreaMsg;
+            integration_project::triangle_area triangleAreaMsg;
             triangleAreaMsg.area = srv.response.area;
             triangleAreaPublisher.publish(triangleAreaMsg);
         }
